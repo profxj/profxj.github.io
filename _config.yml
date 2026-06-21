@@ -171,6 +171,7 @@ exclude:
   - .asset-cache
   - .bundle
   - .github
+  - claude_prompts   # project notes; contains literal {% %} Liquid snippets that must not be rendered
   - .jekyll-assets-cache
   - .sass-cache
   - assets/js/_main.js
