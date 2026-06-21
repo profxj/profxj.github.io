@@ -16,7 +16,7 @@ chemical enrichment of the Universe over cosmic time. In recent years I have
 worked extensively on **fast radio bursts (FRBs)** as cosmological probes &mdash;
 including the localization of bursts to their host galaxies and the use of their
 dispersion measures to carry out a [census of the Universe's missing
-baryons](/publication/2020-macquart-baryon-census).
+baryons](/publication/2020Natur581391M).
 
 I am also a dedicated builder of open-source scientific software. I founded or
 help lead projects such as [PypeIt](/portfolio/pypeit/) (a Python spectroscopic

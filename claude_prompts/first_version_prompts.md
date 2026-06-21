@@ -64,6 +64,7 @@ Consider using the Claude skills in `~/bin/.claude/skills/`.
 5. Read this file. Execute the Task 4
 6. Read this file. Execute the Task 5
 7. Read this file. Execute the Task 6
+8. Read this file. Execute the Task 7
 
 ## Tasks
 
@@ -104,6 +105,8 @@ Consider using the Claude skills in `~/bin/.claude/skills/`.
    and verify the live site. Log the work.
 
 6. **BibTex**.  I have downloaded a BibTex file from my ADS library.  Please make use of it as you intended.  Note, it is long..
+
+7. **BibTex continues**.  I have downloaded the rest of the BibTex entries from my ADS library.  And I renamed the original as files/jxp-ads-library-last9.bib.  The others have similar names.  Please process them.
 
 ### Report
 
@@ -627,3 +630,69 @@ Learned:
 **Handoff:** the change set from Task 5 still applies, plus: 8 new
 `_publications/*.md` and the bib relocated to `files/jxp-ads-library.bib`
 (was added under `_publications/` by Xavier). Same commit/push steps as Task 5.
+
+### 2026-06-21 (Task 7 — generated the full publication list from the complete ADS library)
+
+Xavier added the rest of his ADS export as four files in `files/`:
+`jxp-ads-library-first500.bib`, `-next500.bib`, `-1000.bib`, and `-last9.bib`
+(the Task 6 file, renamed). Total **1509 unique entries** (no overlapping
+bibcodes across the four files).
+
+Because hand-writing ~1500 entries is infeasible, I wrote a Python generator
+(`scratchpad/genpubs.py`) that parses all four bibs, dedupes by bibcode, cleans
+the data, and emits one `_publications/*.md` per entry in the same front-matter
+schema as before. It **replaces** all earlier hand-made files (the 4 Task-4
+highlights + 8 Task-6 early papers are all in the library, so nothing is lost
+except their custom prose — now uniform with the rest).
+
+What the generator does:
+- **Type → category / inclusion**: `@ARTICLE` → `manuscripts` ("Journal
+  Articles"); `@INPROCEEDINGS`/`@INCOLLECTION`/`@PHDTHESIS` → `conferences`
+  ("Conference Papers"). **Excluded** `@MISC` (162), `@dataset` (63), and
+  `@software` (35) = **260 entries** — these are Zenodo/dataset/abstract records,
+  not journal publications, and software already has its own section. (Say the
+  word if you want any of these included.)
+- **Author-collision filter**: drops entries whose only "Prochaska" author is
+  clearly someone else. Caught **5**: James F. (the limewater paper), John D.,
+  Janice (×2-ish, health-science Prochaskas), and one more — all genuine ADS
+  name collisions in your library. The filter deliberately keeps bare
+  "Prochaska, J." (you) and rejects different first names or a non-X middle
+  initial (J. Z.). Earlier the filter was too strict and would have dropped the
+  PypeIt JOSS paper (listed as "Prochaska, J."); fixed.
+- **Cleanup**: expands AAS journal macros (`\mnras`→ MNRAS, `\apjl`→ ApJ Letters,
+  etc.), converts LaTeX (`{\ensuremath{\alpha}}`→ α, small-caps ion states, `\&`,
+  `--`→ en-dash), builds a citation capped at "first 3 authors, et al." for the
+  big collaboration papers, and sets `paperurl` to the DOI (else ADS, else arXiv).
+- **Stable slugs**: permalinks are bibcode-based (e.g.
+  `/publication/2020Natur581391M`), so they **won't change** if you send more bib
+  entries later and I regenerate.
+
+Result: **1244 publication files** (1073 Journal Articles + 171 Conference
+Papers). Verified with a clean Jekyll build (~22 s): the Publications page shows
+both category headings, 1244 "Recommended citation" blocks, newest-first ordering
+(2026 preprints at top), all flagship papers present, and 1244 individual paper
+pages build. The page is large (~1.2 MB HTML) but functional.
+
+**Fixed broken internal links** caused by the slug change: `_pages/about.md`
+(the "missing baryons" link → `/publication/2020Natur581391M`) and
+`_portfolio/01-pypeit.md` (→ `/publication/2020JOSS52308P`). Rebuilt and
+serve-tested both at HTTP 200.
+
+Learned:
+- A `.bib`'s entry **type** doesn't map cleanly to the site's
+  `publication_category`; the article-vs-conference split is an editorial mapping
+  I chose, matched to the `manuscripts`/`conferences` keys in `_config.yml`.
+- Bibcode-based permalinks are the right call for a regenerable pipeline — slugs
+  stay stable across re-runs, so prose links don't rot.
+
+**Heads-up / options for Xavier:**
+- The Publications page now lists ~1244 items on one page. If that's too long,
+  options: paginate, show only recent N + "full list on ADS", or split by decade.
+- 260 non-article records (datasets, software DOIs, misc/abstracts) were
+  excluded; I can include any subset if you want them listed.
+- The four `.bib` files (~1.6 MB) now live in `files/` and will be committed as
+  downloadable; tell me if you'd rather not ship them.
+
+**Handoff:** regenerated `_publications/` (1244 files; old hand-made ones
+removed), edited `_pages/about.md` and `_portfolio/01-pypeit.md`, and the four
+bibs sit in `files/`. Same commit/push as before; build is clean.
