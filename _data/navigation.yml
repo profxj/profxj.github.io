@@ -2,32 +2,26 @@
 #
 # Changing the order here will adjust the order and you can also add additional
 # links. Removing a link prevents it from showing in the header, but does not
-# prevent it from being included in the site.
+# prevent it from being included in the site (the page/collection still builds).
 #
-# NOTE that only one of the CV options should be selected, the first is for the
-#      Markdown formatted page while the second is generated using JSON.
+# The four sections for profxj.github.io:
+#   Publications -> /publications/   (_pages/publications.html, _publications collection)
+#   Software     -> /portfolio/      ("Software" is the relabeled _portfolio collection)
+#   Blog/News    -> /year-archive/   (_pages/year-archive.html, _posts)
+#   Contact      -> /contact/        (_pages/contact.md -- created in Task 4)
+#
+# Talks / Teaching / CV / Guide are intentionally omitted from the menu; their
+# pages and collections remain in the repo, just unlinked from the header.
 
 main:
   - title: "Publications"
     url: /publications/
 
-  - title: "Talks"
-    url: /talks/    
-
-  - title: "Teaching"
-    url: /teaching/    
-    
-  - title: "Portfolio"
+  - title: "Software"
     url: /portfolio/
-        
-  - title: "Blog Posts"
+
+  - title: "Blog/News"
     url: /year-archive/
-    
-  - title: "CV"
-    url: /cv/
-    
-  # - title: "CV"
-  #   url: /cv-json/
-    
-  - title: "Guide"
-    url: /markdown/
+
+  - title: "Contact"
+    url: /contact/
