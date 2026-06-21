@@ -573,3 +573,57 @@ git push origin master
 Then watch the repo **Actions** tab; the site updates at
 https://profxj.github.io/ within ~1–2 min. Post-deploy, confirm `profile.jpg`
 and the ADS library link render on the live site.
+
+### 2026-06-21 (Task 6 — generated publications from the ADS BibTeX export)
+
+Found Xavier's export at `_publications/jxp-bibtex.bib` and processed it as the
+intended source for `_publications/`.
+
+**The file held 9 entries** (6 `@ARTICLE`, 3 `@INPROCEEDINGS`), all early-career
+damped Ly&alpha; / quasar-absorption-line work from 1995&ndash;1998. Two things
+worth flagging:
+- **One entry is not yours.** `1985JChEd..62..437P`, "Simple limewater maker"
+  (*Journal of Chemical Education*, 1985), is authored by **James F. Prochaska**
+  &mdash; a different person. This is a classic ADS author-name collision that
+  slipped into the export. **I excluded it.**
+- **The export looks like a small subset, not your full library.** You noted it
+  was "long," but it contains only 9 records spanning 1995&ndash;1998 &mdash;
+  none of your well-known later papers (FRBs, PypeIt, the ARA&A review, etc.).
+  Likely the download was truncated, or only part of the library was selected.
+  If you want a complete publication list on the site, re-export the full library
+  (ADS: open the library &rarr; select all &rarr; Export &rarr; BibTeX) and send
+  it; I'll regenerate from that.
+
+**What I did:** converted the **8 legitimate entries** into `_publications/*.md`
+in the same schema as the Task 4 highlights, mapping `@ARTICLE` &rarr;
+`category: manuscripts` ("Journal Articles") and `@INPROCEEDINGS` &rarr;
+`category: conferences` ("Conference Papers"). For each I expanded the AAS macro
+journals (`\mnras`, `\apj`, `\apjl`), converted the LaTeX in titles
+(`{\ensuremath{\alpha}}` &rarr; &alpha;), built a recommended-citation string,
+and set `paperurl` to the DOI (articles) or the ADS abstract (proceedings).
+Because these 8 don't overlap the four modern highlights, I **added** them rather
+than replacing &mdash; the Publications page now spans 1995&ndash;2020.
+
+Also moved the raw bib out of the collection directory to
+`files/jxp-ads-library.bib` so Jekyll doesn't emit it as a stray page; it's now a
+downloadable file at `/files/jxp-ads-library.bib`.
+
+**Verified** (rebuilt, clean): 12 `_publications` files, all YAML valid; the
+Publications page groups them into "Journal Articles" (9, newest-first: JOSS
+2020, Nature 2020, Science 2019, ARA&A 2005, MNRAS 1998, ApJL 1998, ApJ 1997
+&times;2, ApJ 1996) and "Conference Papers" (3: AAS #190 1997, APS 1996, AAS #186
+1995); 12 "Recommended citation" blocks; no `.bib` in the publications output.
+
+Learned:
+- academicpages ships a `markdown_generator/pubsFromBib.py` for bib&rarr;markdown,
+  but for 8 entries (and to filter the mis-attributed one + match my existing
+  front-matter scheme) hand-generation was cleaner and safer.
+- The category split on the Publications page is driven entirely by each entry's
+  `category:` matching a key under `publication_category:` in `_config.yml`
+  (`manuscripts`/`conferences`), independent of the BibTeX entry type &mdash; so
+  the `@ARTICLE`/`@INPROCEEDINGS` &rarr; `manuscripts`/`conferences` mapping is a
+  manual editorial choice.
+
+**Handoff:** the change set from Task 5 still applies, plus: 8 new
+`_publications/*.md` and the bib relocated to `files/jxp-ads-library.bib`
+(was added under `_publications/` by Xavier). Same commit/push steps as Task 5.
