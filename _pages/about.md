@@ -7,13 +7,15 @@ redirect_from:
   - /about.html
 ---
 
-I am a Professor of Astronomy &amp; Astrophysics at the University of California,
-Santa Cruz, and an Astronomer with UC Observatories.
+I am a Professor of [Astronomy &amp; Astrophysics](https://astro.ucsc.edu/) at the
+[University of California, Santa Cruz](https://www.ucsc.edu/) (UCSC), and an
+Astronomer with [UC Observatories](https://www.ucolick.org/) (UCO). I am also an
+Affiliate of the [Ocean Sciences Department](https://oceansci.ucsc.edu/) at UCSC.
 
-My research spans the gas in and around galaxies and across the cosmos: the
-intergalactic and circumgalactic medium, damped Ly&alpha; systems, and the
-chemical enrichment of the Universe over cosmic time. In recent years I have
-worked extensively on **fast radio bursts (FRBs)** as cosmological probes &mdash;
+My research spans the gas in, around and in-between galaxies and across the cosmos: the
+interstellar medium, circumgalatic medium, and intergalactic medium.
+In recent years I have
+worked primarily on **fast radio bursts (FRBs)** as cosmological probes &mdash;
 including the localization of bursts to their host galaxies and the use of their
 dispersion measures to carry out a [census of the Universe's missing
 baryons](/publication/2020Natur581391M).

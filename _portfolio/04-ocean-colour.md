@@ -5,6 +5,10 @@ collection: portfolio
 permalink: /portfolio/ocean-colour/
 ---
 
+<img src="/images/SeaMeetsStars_logo_transparent_512.png"
+     alt="Sea Meets the Stars logo" align="right" width="160"
+     style="margin: 0 0 1em 1.5em;" />
+
 **ocean-colour** is a GitHub organization gathering open-source tools for the
 analysis of ocean-colour remote-sensing data &mdash; part of my work applying
 astronomical data-science methods to oceanography. Repositories include:

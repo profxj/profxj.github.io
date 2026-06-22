@@ -25,6 +25,9 @@ Consider using the Claude skills in `~/bin/.claude/skills/`.
 ## Prompts
 
 1. Read this file. Execute the 1st task under "Tasks".
+2. Read this file. Execute the 2nd task under "Tasks".
+3. Read this file. Execute the 3rd task under "Tasks".
+4. Read this file. Execute the 3rd task again under "Tasks".  You didn't complete it
 
 ## Tasks
 
@@ -38,6 +41,14 @@ Consider using the Claude skills in `~/bin/.claude/skills/`.
     - Also add these 2 additional affiliations:
       - Affiliate of Kavli/IPMU 
       - Project Visiting Faculty at NAOJ
+
+2. Remind me how to view the site locally.  Even better, generate a script for me to do so.
+
+3. Here are additional modifications:
+
+    - Add links to UCSC, UCO and whatever else you think is relevant.
+    - Add the Sea Meets the Stars logo to the ocean-colour page.
+    - Search the UCSC news archives to include News stories and press releases that include me.  Add these to the News pages.
 
 
 ## Logging
@@ -55,6 +66,101 @@ The "Logs" section will record Claude's work. Please use the following format:
 ...
 
 ## Logs
+
+### 2026-06-22 (v2 Task 3 — institutional links, ocean-colour logo, UCSC News archive)
+
+Task 3 was rewritten with three new sub-items; executed all three.
+
+**Links to UCSC / UCO / etc.** In the home-page opening sentence
+(`_pages/about.md`) I linked the key institutions: "Astronomy &amp; Astrophysics"
+→ astro.ucsc.edu, "University of California, Santa Cruz" → ucsc.edu, "UC
+Observatories" → ucolick.org (Ocean Sciences was already linked). The Affiliations
+list and oceanography/Simons mentions were already linked from Task 1.
+
+**SMTS logo on the ocean-colour page.** Added the right-floated Sea Meets the Stars
+logo to `_portfolio/04-ocean-colour.md` (same markup as the home page and the
+sea-meets-the-stars portfolio entry).
+
+**UCSC News archive → News posts.** Searched `news.ucsc.edu` for stories featuring
+JXP and **fetched each candidate page to verify the exact date, headline, and that
+Prochaska is actually named** before adding (no writing from memory). Created **9
+news posts** in `_posts/` (one per story), each a short summary + a link back to the
+UCSC News article:
+- 2019-09-26 Galaxy found to float in a tranquil sea of halo gas (frb)
+- 2020-05-27 Universe's 'missing matter' finally found … (frb)
+- 2021-02-09 Prochaska honored — AAAS Newcomb Cleveland Prize (award)
+- 2021-05-20 FRBs tracked to galaxies' spiral arms (frb)
+- 2022-09-07 With a Simons Pivot Fellowship, turns to oceanography (oceanography)
+- 2023-10-19 Most-distant FRB ever detected (frb)
+- 2024-07-09 CHIME/FRB — Marcel Grossmann Award (award)
+- 2024-09-03 AI to measure ocean heat / fronts for climate (oceanography)
+- 2025-08-21 Brightest FRB ever seen, pinpointed (frb)
+
+Verified the dates against the live articles (e.g. the 2025-08 and 2024-07 pages
+explicitly list Prochaska among the UCSC contributors; the 2021-02 and 2022-09
+pages name him in the headline).
+
+**Verified:** clean `bundle exec jekyll build` (~23 s, no warnings/errors). Home
+page renders the new ucsc.edu / ucolick.org / astro.ucsc.edu links; the ocean-colour
+page shows the SMTS logo; the **News** page (`/year-archive/`) now lists **10 items**
+(9 news + the welcome post) grouped under year headings 2019–2026 in reverse-chron
+order, and an individual post page serves HTTP 200.
+
+Learned / notes:
+- The "News" page is the Liquid year-archive (`_pages/year-archive.html`) that loops
+  over `site.posts`; dropping dated files into `_posts/` is all it takes for them to
+  appear, grouped by year. Permalinks follow `/posts/YYYY/MM/<slug>/`.
+- All nine stories are FRB/cosmology or oceanography — the two threads already
+  highlighted on the site — so the News page now tells a coherent story.
+
+Files modified/created: `_pages/about.md`, `_portfolio/04-ocean-colour.md`, 9 new
+`_posts/*.md` (+ this log). Git is Xavier's to run.
+
+### 2026-06-22 (v2 Task 2 — local-preview reminder + serve.sh script)
+
+**How to view the site locally (reminder).** Two routes, both serving at
+http://localhost:4000/ :
+- **Native (fastest):** `bundle exec jekyll serve` — uses system Ruby 3.2.3 + the
+  gems already vendored under `./vendor/bundle` (`.bundle/config` pins
+  `BUNDLE_PATH: vendor/bundle`). The `bundle`/`jekyll` executables live in the
+  user gem bin (`$(ruby -e 'print Gem.user_dir')/bin`).
+- **Docker (no Ruby needed):** `docker compose up --build` — builds from the
+  repo's `Dockerfile` and serves with `_config.yml,_config_docker.yml`.
+
+**Script:** wrote `serve.sh` at the repo root (chmod +x) wrapping both routes:
+- `./serve.sh` — native, live reload on. cd's to the repo root, puts the user gem
+  bin on PATH, runs `bundle check || bundle install` (fast no-op once vendored),
+  then `bundle exec jekyll serve --livereload`.
+- `./serve.sh --no-watch` — native without the file watcher.
+- `./serve.sh --docker` — `docker compose up --build`.
+- `./serve.sh --help` — usage (printed from the header comment).
+  Emits a clear error with install steps if `bundle` is missing.
+
+**Verified:** syntax-checked (`bash -n`); `--help` renders cleanly; booted
+`./serve.sh --no-watch` and confirmed HTTP 200 for `/`, `/publications/`, and the
+new footer logo `/images/ucsc_log.png`. The build itself is clean.
+
+**Gotcha learned (documented in the script).** The default `--livereload` (and a
+plain `jekyll serve`, which watches by default) needs an inotify watcher. On a box
+where the inotify *instance* limit is already exhausted, Jekyll dies with
+"Failed to initialize inotify ... user limit on the total number of inotify
+instances has been reached" — it builds fine but the watcher can't start. Fix is
+either `./serve.sh --no-watch` or raise the limit permanently:
+`fs.inotify.max_user_instances=1024` via `/etc/sysctl.d/`. Both are spelled out in
+`serve.sh --help`.
+
+Files modified: new `serve.sh` (+ this log). Git is Xavier's to run.
+
+**Follow-up (same day): Xavier ran `./serve.sh` and saw nothing at
+localhost:4000.** Diagnosed: nothing was listening on :4000 and no jekyll process
+was alive — the default `--livereload` run had crashed on the inotify watcher
+exactly as the gotcha predicted (`fs.inotify.max_user_instances` = **128**, already
+exhausted on his machine). Jekyll builds (~30 s) then dies *before* serving, so the
+browser connects to nothing. **Fix:** flipped `serve.sh` so the **watcher is OFF by
+default** (reliable on his box) and live reload is now opt-in via `./serve.sh
+--watch`. Started the server for him with `jekyll serve --no-watch` and confirmed
+HTTP 200. Permanent live-reload fix (raise inotify limit) is still documented in
+`--help`.
 
 ### 2026-06-22 (v2 Task 1 — UCSC color scheme, logos, affiliations, Simons Pivot)
 
