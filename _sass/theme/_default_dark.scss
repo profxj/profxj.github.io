@@ -2,24 +2,29 @@
     DEFAULT THEME - DARK VERSION
     ========================================================================== */
 
+/* UC Santa Cruz brand palette (dark variant)
+   - UCSC Blue : #003C6C   - UCSC Gold : #FDC700 */
+$ucsc-blue                  : #003C6C;
+$ucsc-gold                  : #FDC700;
+
 /* Color codes used for the theme */
-$primary-color              : #0ea1c5;
+$primary-color              : $ucsc-gold;
 $gray                       : #7a8288;
 $dark-gray                  : mix(#000, $gray, 40%);
 $darker-gray                : mix(#000, $gray, 60%);
 $light-gray                 : mix(#fff, $gray, 50%);
 
-$background                 : #474747;
+$background                 : mix(#000, $ucsc-blue, 35%); // deep UCSC navy
 $background-light           : mix(#fff, $background, 80%);
 $background-lighter         : mix(#fff, $background, 90%);
 $text                       : #ffffff;
-$link                       : #0ea1c5;
-$link-dark                  : mix(#000, $link, 25%);
+$link                       : $ucsc-gold;
+$link-dark                  : mix(#000, $link, 20%);
 $link-light                 : mix(#fff, $link, 25%);
 
 /* Color codes used for the site */
 $danger-color               : #ee5f5b;
-$info-color                 : #2f7f93;
+$info-color                 : $ucsc-gold;
 $notice-color               : #7a8288;
 $success-color              : #62c462;
 $warning-color              : #f89406;

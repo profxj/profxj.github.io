@@ -21,10 +21,26 @@ baryons](/publication/2020Natur581391M).
 I am also a dedicated builder of open-source scientific software. I founded or
 help lead projects such as [PypeIt](/portfolio/pypeit/) (a Python spectroscopic
 data-reduction pipeline), [linetools](/portfolio/linetools/), and the
-[FRBs](/portfolio/frbs/) software organization. More recently I have been
-applying data-science and machine-learning methods developed for astronomy to
-**oceanography**, through the [ocean-colour](/portfolio/ocean-colour/) and
-[Sea-Meets-the-Stars](/portfolio/sea-meets-the-stars/) efforts.
+[FRBs](/portfolio/frbs/) software organization.
+
+<img src="/images/SeaMeetsStars_logo_transparent_512.png"
+     alt="Sea Meets the Stars logo" align="right" width="150"
+     style="margin: 0 0 1em 1.5em;" />
+
+More recently I have been applying data-science and machine-learning methods
+developed for astronomy to **oceanography**, through the
+[ocean-colour](/portfolio/ocean-colour/) and
+[Sea-Meets-the-Stars](/portfolio/sea-meets-the-stars/) efforts. This
+oceanography research has been accelerated by a
+[Simons Pivot Fellowship](https://www.simonsfoundation.org/simons-pivot-fellowship/).
+
+## Affiliations
+
+- Professor of Astronomy &amp; Astrophysics, [UC Santa Cruz](https://astro.ucsc.edu/)
+- Astronomer, [UC Observatories](https://www.ucolick.org/)
+- Affiliate, [Ocean Sciences Department, UC Santa Cruz](https://oceansci.ucsc.edu/)
+- Affiliate, [Kavli IPMU](https://www.ipmu.jp/en) (Kavli Institute for the Physics and Mathematics of the Universe)
+- Project Visiting Faculty, [NAOJ](https://www.nao.ac.jp/en/) (National Astronomical Observatory of Japan)
 
 Use the menu above to browse my [publications](/publications/), my
 [software](/portfolio/), news, and [contact information](/contact/). A full,
