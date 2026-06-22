@@ -65,6 +65,7 @@ Consider using the Claude skills in `~/bin/.claude/skills/`.
 6. Read this file. Execute the Task 5
 7. Read this file. Execute the Task 6
 8. Read this file. Execute the Task 7
+9. Read this file. Execute the Task 8
 
 ## Tasks
 
@@ -107,6 +108,8 @@ Consider using the Claude skills in `~/bin/.claude/skills/`.
 6. **BibTex**.  I have downloaded a BibTex file from my ADS library.  Please make use of it as you intended.  Note, it is long..
 
 7. **BibTex continues**.  I have downloaded the rest of the BibTex entries from my ADS library.  And I renamed the original as files/jxp-ads-library-last9.bib.  The others have similar names.  Please process them.
+
+8. **Building on GitHub**.  I have moved v1 to master and then did the deploy and build.  I think it failed.  You can see the comments here: https://github.com/profxj/profxj.github.io/actions/runs/27905777957.  Please see if you can fix it.
 
 ### Report
 
@@ -696,3 +699,55 @@ Learned:
 **Handoff:** regenerated `_publications/` (1244 files; old hand-made ones
 removed), edited `_pages/about.md` and `_portfolio/01-pypeit.md`, and the four
 bibs sit in `files/`. Same commit/push as before; build is clean.
+
+### 2026-06-21 (Task 8 — fixed the failed GitHub Pages build)
+
+Xavier merged `v1` → `master` and the GitHub Pages deploy
+(`pages-build-deployment` run 27905777957) **failed at "Build with Jekyll."**
+Pulled the logs with `gh run view --log-failed`.
+
+**Root cause:** a Liquid syntax error in **`claude_prompts/first_version_prompts.md`**
+(this very file):
+`Liquid syntax error (line 380): Syntax Error in tag 'if'`. The Report/Logs
+sections quote the template's Liquid in backticks (e.g. `` `{% if %}` ``), which
+is not valid Liquid. It built fine locally but failed on GitHub because **GitHub
+Pages runs the `jekyll-optional-front-matter` plugin** (part of the
+`github-pages` gem, jekyll 3.10.0), which injects front matter into plain
+Markdown files and thus *renders* them through Liquid. My local Jekyll (4.x, no
+that plugin) treated the file as a static copy, so the bug was invisible until
+deploy. (Classic "works locally, fails on Pages" due to the plugin/version gap.)
+
+**Fix:** added `claude_prompts` to the `exclude:` list in `_config.yml`. These
+are project notes, not website content, and shouldn't be published anyway —
+excluding the directory stops Jekyll from reading/rendering it entirely (no
+plugin touches excluded paths). One-line change.
+
+**Verified locally by reproducing GitHub's environment** (installed
+`jekyll-optional-front-matter` and built with it):
+- With `claude_prompts` *included* + the plugin → reproduced the **identical**
+  failure (`Liquid syntax error … in claude_prompts/first_version_prompts.md`,
+  jekyll 3.10.0).
+- With the fix (`claude_prompts` excluded) + the same plugin → **clean build**
+  (~23 s).
+Also scanned every non-excluded Markdown file for stray Liquid: the only
+no-front-matter file containing `{% %}` was the prompt file; all others live in
+`_pages/` with intentional, valid Liquid. So this was the sole blocker.
+
+Learned:
+- GitHub Pages' "Deploy from a branch" build is **not** identical to a bare local
+  `jekyll build`: it force-enables `jekyll-optional-front-matter`,
+  `jekyll-relative-links`, `jekyll-titles-from-headings`, etc. Any committed
+  `.md` with literal Liquid (docs, notes, READMEs) must be in `exclude:` or it
+  will be rendered and can break the build.
+- Dot-directories (e.g. `.claude/`) are ignored automatically; non-dot doc dirs
+  like `claude_prompts/` are not, hence the explicit exclude.
+
+**Handoff (this fix must reach `master`, where Pages builds):**
+```
+git add _config.yml
+git commit -m "Exclude claude_prompts/ from Jekyll build (fixes Pages Liquid error)"
+git checkout master && git merge v1 && git push origin master
+git checkout v1
+```
+Then re-check the **Actions** tab; the build should go green and the site appear
+at https://profxj.github.io/ within ~1–2 min. Only `_config.yml` changed.
