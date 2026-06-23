@@ -5,6 +5,10 @@ collection: portfolio
 permalink: /portfolio/sea-meets-the-stars/
 ---
 
+<img src="/images/SeaMeetsStars_logo_transparent_512.png"
+     alt="Sea Meets the Stars logo" align="right" width="160"
+     style="margin: 0 0 1em 1.5em;" />
+
 **Sea-Meets-the-Stars** is a GitHub organization "devoted to the machine
 learning and Bayesian analysis of large datasets of oceanographic data" &mdash;
 bringing techniques developed for astronomical surveys to sea-surface

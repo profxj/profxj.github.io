@@ -15,12 +15,13 @@
           animation-delay: 0.15s;
   z-index: 20;
 
+  /* UC Santa Cruz gold accent strip below the masthead */
   &::after {
     content: "";
     position: absolute;
     bottom: 0;
-    height: 1px;
-    background: var(--global-border-color);
+    height: 3px;
+    background: #FDC700;
     width: 100%;
   }
 

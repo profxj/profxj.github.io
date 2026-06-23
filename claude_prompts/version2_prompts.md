@@ -1,45 +1,12 @@
-# Build the first version of profxj.github.io with Claude
+# Build the v2 of profxj.github.io with Claude
 
 ## Goals
 
-Use Claude to build the **first public version** of J. Xavier Prochaska's
-professional website in this dedicated GitHub Pages repo (`profxj.github.io`),
-starting from the **academicpages** Jekyll template. Along the way, JXP will
-learn how such websites are built (Jekyll structure, `_config.yml`, collections,
-navigation, GitHub Actions deployment).
-
-This file continues the work begun in `~/bin/claude_prompts/website_prompts.md`
-(the "Prep" phase, where we chose the repo, theme, and sections). That phase is
-done; from here on, **all development happens in this repo.**
+Make modifications to the v1 of the website to improve its style and content.
 
 ## Context
 
-J. Xavier Prochaska — Professor of Astronomy & Astrophysics, UC Santa Cruz;
-Astronomer, UC Observatories. Email: jxp@ucsc.edu. GitHub: https://github.com/profxj
-
-GitHub Organizations that JXP has launched (source material for the Software
-section):
-
-- https://github.com/FRBs
-- https://github.com/pypeit
-- https://github.com/ocean-colour
-- https://github.com/Sea-Meets-the-Stars
-- https://github.com/linetools
-
-His prior (minimal) professional website: https://www.ucolick.org/~xavier/Welcome.html
-
-**Decisions carried over from the Prep phase:**
-
-- Repo: `profxj.github.io` (user site → live at https://profxj.github.io/).
-- Theme: **academicpages** (already cloned into this repo from the template).
-- Deployment: **GitHub Actions** (academicpages default); default `*.github.io`
-  URL, no custom domain.
-- Sections to include in the navigation: **Publications, Software, Blog/News,
-  Contact**. Drop the default Talks / Teaching / CV menu items (the collection
-  folders can remain; they just won't appear in the menu).
-- "Software" reuses academicpages' built-in `_portfolio/` collection, relabeled
-  in `_data/navigation.yml`, to showcase PypeIt, linetools, FRBs, ocean-colour,
-  Sea-Meets-the-Stars, etc.
+See the Context section of thefirst_version_prompts.md file for the v1 of the website.
 
 ## Skills
 
@@ -58,241 +25,30 @@ Consider using the Claude skills in `~/bin/.claude/skills/`.
 ## Prompts
 
 1. Read this file. Execute the 1st task under "Tasks".
-2. Read this file. Execute the Task 1b
-3. Read this file. Execute the Task 2
-4. Read this file. Execute the Task 3
-5. Read this file. Execute the Task 4
-6. Read this file. Execute the Task 5
-7. Read this file. Execute the Task 6
-8. Read this file. Execute the Task 7
-9. Read this file. Execute the Task 8
+2. Read this file. Execute the 2nd task under "Tasks".
+3. Read this file. Execute the 3rd task under "Tasks".
+4. Read this file. Execute the 3rd task again under "Tasks".  You didn't complete it
 
 ## Tasks
 
-1. **Survey the template.** Examine the academicpages files in this repo and
-   describe in the Report section how it is organized: `_config.yml`,
-   `_data/navigation.yml`, the collections (`_publications`, `_portfolio`,
-   `_posts`, `_pages`, etc.), `_layouts`/`_includes`, and how a page becomes a
-   menu item. Confirm how the site builds/deploys. Put any questions in Q&A and
-   log the work.
+1. Let's modify the style of the website as follows:
 
-1b. I have answered the questions in the Q&A section.  Please read them and react accordingly.  Log your work.
+    - Choose a color scheme that matches that of UC Santa Cruz
+    - I have added two logos to images/ folder (1) the UCSC athletic slug -- ucsc_slug.png; (2) my Sea Meets the Stars logo.  Please incorporate these into the website.  
+    - UC Observatory is missing its "y".  Fix that
+    - Add a comment that my Oceanography research has been accelerated by a Simons Pivot Fellowship.  And link to that program.
+    - Somewhere, indicate that I am an Affiliate of the Ocean Sciences Department at UCSC.
+    - Also add these 2 additional affiliations:
+      - Affiliate of Kavli/IPMU 
+      - Project Visiting Faculty at NAOJ
 
-2. **Configure site identity.** Edit `_config.yml`: set name, title/role, bio,
-   `email`, `url: https://profxj.github.io`, `repository: profxj/profxj.github.io`,
-   and the author sidebar/social links (GitHub `profxj`, ORCID if provided).
-   Replace the demo author photo reference. Log the work.  Note that I have 
-   have provided the ORCID, Google Scholar, and ADS library URLs in the Q&A section.
+2. Remind me how to view the site locally.  Even better, generate a script for me to do so.
 
-3. **Trim the navigation.** Edit `_data/navigation.yml` down to the four chosen
-   menu items — Publications, Software, Blog/News, Contact — relabeling the
-   portfolio entry as "Software". I put a photo in as images/profile.png.  I think the Library is now public; please check. Log the work.
+3. Here are additional modifications:
 
-4. **Populate the sections.**
-   - **Publications** — set up `_publications/` per the agreed source
-     (BibTeX / ADS / Scholar / ORCID, likely a curated subset plus a link to the
-     full ADS library).
-   - **Software** — write `_portfolio/` entries for the key repos/orgs above.
-   - **Blog/News** — seed `_posts/` with an initial welcome/news post.
-   - **Contact** — a simple contact page; ensure email/GitHub/ORCID render in the
-     sidebar.
-   - Also note
-     - I have renamted my image as images/profile.jpg.  Please handle that
-     - I confirm the ADS URL works in an incognito window.
-   Log the work.
-
-5. **Preview & polish.** Build locally (Jekyll/Docker), check each page and the
-   navigation, fix layout/content issues, then hand off to Xavier to commit/push
-   and verify the live site. Log the work.
-
-6. **BibTex**.  I have downloaded a BibTex file from my ADS library.  Please make use of it as you intended.  Note, it is long..
-
-7. **BibTex continues**.  I have downloaded the rest of the BibTex entries from my ADS library.  And I renamed the original as files/jxp-ads-library-last9.bib.  The others have similar names.  Please process them.
-
-8. **Building on GitHub**.  I have moved v1 to master and then did the deploy and build.  I think it failed.  You can see the comments here: https://github.com/profxj/profxj.github.io/actions/runs/27905777957.  Please see if you can fix it.
-
-### Report
-
-#### How academicpages is organized
-
-**1. `_config.yml` (site-wide settings).** One file that rarely changes. Holds:
-- *Identity*: `title`, `name`, `description`, `url`, `baseurl`, `repository`.
-  Still set to template defaults ("Your Name", `url: https://academicpages.github.io`,
-  `repository: academicpages/academicpages.github.io`) — these are Task 2's job.
-- *`author:` block* — drives the left sidebar (avatar, bio, location, employer,
-  email) and the social/academic icon links (`github`, `orcid`, `googlescholar`,
-  `bluesky`, etc.). A field left blank → its icon does not render. Currently all
-  demo values ("Your Sidebar Name", `github: academicpages`, etc.).
-- *`publication_category:`* — defines the headings the Publications page groups by:
-  `books` → "Books", `manuscripts` → "Journal Articles", `conferences` →
-  "Conference Papers". A publication's `category:` front-matter must match one of
-  these keys to be grouped.
-- *`collections:`* — registers `teaching`, `publications`, `portfolio`, `talks`
-  with `output: true` and `permalink: /:collection/:path/`.
-- *`defaults:`* — sets the default `layout` + options per collection/type (e.g.
-  posts & pages → `layout: single`; talks → `layout: talk`; all get
-  `author_profile: true` so the sidebar shows).
-- *Build*: kramdown (GFM) + rouge, Sass compressed, and `plugins:` (jekyll-feed,
-  -gist, -paginate, -sitemap, -redirect-from, jemoji).
-
-**2. `_data/navigation.yml` (the top menu).** A single `main:` list of
-`{title, url}` pairs. `_includes/masthead.html` loops over
-`site.data.navigation.main` to render the header links (and auto-marks the
-current page "selected"). The site title link to `/` is hard-coded separately,
-so the menu list is *only* the items to the right of the name. **Removing an
-entry here removes it from the menu but does NOT delete the underlying page or
-collection** — exactly what the plan calls for (Talks/Teaching/CV pages stay,
-just leave the menu). Current menu: Publications, Talks, Teaching, Portfolio,
-Blog Posts (→ `/year-archive/`), CV, Guide. Target (Task 3): Publications,
-Software, Blog/News, Contact.
-
-**3. Collections & content directories.**
-- `_publications/` — one Markdown file per paper (`YYYY-MM-DD-slug.md`). Front
-  matter: `title, collection: publications, category, permalink, excerpt, date,
-  venue, paperurl, citation`. 5 demo papers present.
-- `_portfolio/` — one file per item (`.md` or `.html`). Minimal front matter
-  (`title, excerpt, collection: portfolio`). This is what we relabel as
-  **Software**. 2 demo items present.
-- `_posts/` — blog posts (`YYYY-MM-DD-slug.md`), standard Jekyll. 5 demo posts.
-- `_talks/`, `_teaching/` — kept but will be unlinked from the menu.
-- `_pages/` — the standalone pages and the *index/listing* pages that power each
-  menu target. Each listing page sets its own `permalink` and `layout: archive`
-  and loops over a collection:
-  - `publications.html` (`permalink: /publications/`) → groups `site.publications`
-    by `publication_category`, rendering each via `_includes/archive-single.html`.
-  - `portfolio.html` (`permalink: /portfolio/`) → loops `site.portfolio`.
-  - `about.md` (`permalink: /`) → the **home page** (currently template marketing
-    copy; needs replacing with JXP's bio).
-  - `year-archive.html`, `cv.md`, `talks.html`, `teaching.html`, plus utility
-    pages (`404.md`, sitemap, archives, `markdown.md` guide).
-
-**4. `_layouts` / `_includes`.** Layouts (`default`, `single`, `archive`,
-`talk`, `cv-layout`, `splash`, `compress`) define page skeletons; `single` and
-`archive` are the workhorses. Includes are reusable fragments — notably
-`masthead.html` (top nav), `author-profile.html` + `sidebar.html` (the
-`author:`-driven sidebar), `archive-single.html` (one list row for a
-collection item), `seo.html`, `footer.html`. `_data/authors.yml` and
-`_data/ui-text.yml` supply multi-author and label/i18n data.
-
-**5. How a page becomes a menu item.** Two independent steps:
-(a) the page/listing must *exist* with a `permalink` (e.g. `publications.html`
-sets `/publications/`); (b) an entry in `_data/navigation.yml` must point its
-`url` at that permalink. `masthead.html` renders only (b). So a page can exist
-without a menu link (Task 3's plan for Talks/Teaching/CV) — and a menu link
-will 404 if no page owns its permalink.
-
-#### Build & deploy
-- **Local preview**: `bundle exec jekyll serve -l -H localhost` (Gemfile pins
-  `github-pages` + `jekyll`, webrick) → http://localhost:4000. Or Docker:
-  `docker-compose up` builds the `Dockerfile` and runs
-  `jekyll serve -H 0.0.0.0 -w --config _config.yml,_config_docker.yml` on
-  port 4000 (`_config_docker.yml` overrides `baseurl` for the container).
-- **Deploy**: There is **no checked-in Jekyll build workflow** in
-  `.github/workflows/` — only `bad-pr.yml` (closes upstream-targeted PRs) and
-  `scrape_talks.yml` (regenerates the talk map). academicpages relies on
-  GitHub's *built-in* **`pages-build-deployment`** action: with Pages set to
-  "Deploy from a branch" (`master`), every push triggers GitHub to build the
-  Jekyll site with `--safe` and publish it. That built-in build is what the
-  README's `pages-build-deployment` badge tracks, and it is the "GitHub Actions
-  default" referenced in the plan. (See Q&A — one decision to confirm.)
-
-### Q&A
-
-**Q1 (deploy mechanism — needs Xavier's confirmation in repo Settings).** The
-plan says "Deployment: GitHub Actions (academicpages default)". To be precise:
-academicpages does *not* ship a custom `.github/workflows/jekyll.yml`. It uses
-GitHub's built-in **pages-build-deployment** (classic *Deploy from a branch*),
-which runs in `--safe` mode and only allows whitelisted plugins (already listed
-under `whitelist:` in `_config.yml`). Please confirm in
-**repo → Settings → Pages** that *Source = "Deploy from a branch", Branch =
-`master` / `/ (root)`*. If instead you want the newer *"GitHub Actions"* source
-(which would let us drop a `jekyll.yml` and use unrestricted plugins), say so
-and I'll add the workflow. Either works; the built-in path is zero-config and
-matches the template default.
-
-I confirm that it is Deploy from a branch, Branch = master.
-
-**Q2 (home page).** `_pages/about.md` (`permalink: /`) is the front page and
-currently holds template marketing copy. The plan's four menu items don't
-include a "Home/About", but the landing page still needs JXP's bio. I'll
-rewrite `about.md` as the bio/landing page during Task 2/4 unless you'd prefer
-a separate Contact/About split.
-
-Ok
-
-**Q3 (ORCID / Scholar / publication source).** Task 2 wants ORCID and Task 4
-wants a publications source. Please provide: ORCID iD, Google Scholar URL (the
-template ships a placeholder `PS_CX0AAAAAJ`), and how you want Publications
-seeded — curated subset of `_publications/*.md` + a link to your full ADS
-library is the plan's suggestion. An ADS library URL or a BibTeX export would
-let me populate real entries.
-
-ORCID: https://orcid.org/0000-0002-7738-6875
-Google Scholar: https://scholar.google.com/citations?user=04fD24sAAAAJ&hl=en&oi=sra
-
-I don't know how to make an ADS library URL.  Teach me and I'll do it
-
-Ok, here is an ADS URL:
-
-https://ui.adsabs.harvard.edu/user/libraries/3r7CHtXeRUig8doPMbGzWA
-
----
-
-**→ Claude's reactions (Task 1b, 2026-06-21)**
-
-*Q1 — deploy.* Noted: GitHub Pages = "Deploy from a branch", branch `master`,
-`/ (root)`. This is the built-in `pages-build-deployment` (safe mode), so no
-`.github/workflows/*.yml` needs to be added; the existing `whitelist:` in
-`_config.yml` already lists the only plugins GitHub will run. **No file changes
-required** — just don't add non-whitelisted plugins later.
-
-*Q2 — home page.* Confirmed. In Task 2/4 I'll replace the marketing copy in
-`_pages/about.md` (permalink `/`) with JXP's professional bio as the landing
-page; no separate About menu item.
-
-*Q3 — publications source.* Captured for Task 2:
-- ORCID: `0000-0002-7738-6875`
-- Google Scholar user id: `04fD24sAAAAJ`
-(I'll set `orcid:` and `googlescholar:` in the `_config.yml` author block.)
-
-**How to create a NASA ADS library URL (do this when convenient — not blocking).**
-
-NASA ADS (the Astrophysics Data System, https://ui.adsabs.harvard.edu) is the
-standard publication database for astronomy. You have two options:
-
-*Option A — zero effort, "everything by me" link (works right now).* ADS can
-list every paper tied to your ORCID with a search query URL — no account setup,
-nothing to curate. This URL is live immediately:
-
-  https://ui.adsabs.harvard.edu/search/q=orcid%3A0000-0002-7738-6875&sort=date%20desc
-
-  (`orcid:0000-0002-7738-6875`, newest first). We can put this behind a
-  "Full publication list on NASA ADS" link on the Publications page. Downside:
-  it's an unfiltered query — anything mis-attributed to your ORCID shows up.
-
-*Option B — a curated public ADS Library (recommended for a clean list).* This
-is a hand-picked, named, shareable list. Steps:
-  1. Go to https://ui.adsabs.harvard.edu and sign in (top-right). You can sign
-     in with your ORCID — convenient since it links your records.
-  2. Find your papers: search e.g. `orcid:0000-0002-7738-6875` or
-     `author:"Prochaska, J"`. (If you signed in with ORCID, ADS also offers a
-     one-click "Import from ORCID" under your account.)
-  3. Select papers (checkboxes, or "select all" on the results page), then click
-     **Add to Library → Create new library**. Name it e.g. "J. X. Prochaska —
-     Publications".
-  4. Open the library (account menu → **Libraries** → click it). Click the
-     **Settings** tab and toggle **"Make library public."** ADS then shows a
-     public URL of the form:
-       https://ui.adsabs.harvard.edu/public-libraries/<LIBRARY_ID>
-  5. Copy that public URL and paste it here (or tell me and I'll wire it into
-     the Publications page).
-
-Either link works for the site. **Recommendation:** start with Option A now (so
-the site can ship), and optionally upgrade to a curated Option B library later.
-For the *curated subset* of full publication entries in `_publications/*.md`
-(Task 4), the cleanest source is a BibTeX export: in ADS, select your chosen
-papers → **Export → BibTeX**, and hand me the `.bib` — I'll generate the
-Markdown files. Just let me know which route you prefer.
+    - Add links to UCSC, UCO and whatever else you think is relevant.
+    - Add the Sea Meets the Stars logo to the ocean-colour page.
+    - Search the UCSC news archives to include News stories and press releases that include me.  Add these to the News pages.
 
 
 ## Logging
@@ -310,6 +66,155 @@ The "Logs" section will record Claude's work. Please use the following format:
 ...
 
 ## Logs
+
+### 2026-06-22 (v2 Task 3 — institutional links, ocean-colour logo, UCSC News archive)
+
+Task 3 was rewritten with three new sub-items; executed all three.
+
+**Links to UCSC / UCO / etc.** In the home-page opening sentence
+(`_pages/about.md`) I linked the key institutions: "Astronomy &amp; Astrophysics"
+→ astro.ucsc.edu, "University of California, Santa Cruz" → ucsc.edu, "UC
+Observatories" → ucolick.org (Ocean Sciences was already linked). The Affiliations
+list and oceanography/Simons mentions were already linked from Task 1.
+
+**SMTS logo on the ocean-colour page.** Added the right-floated Sea Meets the Stars
+logo to `_portfolio/04-ocean-colour.md` (same markup as the home page and the
+sea-meets-the-stars portfolio entry).
+
+**UCSC News archive → News posts.** Searched `news.ucsc.edu` for stories featuring
+JXP and **fetched each candidate page to verify the exact date, headline, and that
+Prochaska is actually named** before adding (no writing from memory). Created **9
+news posts** in `_posts/` (one per story), each a short summary + a link back to the
+UCSC News article:
+- 2019-09-26 Galaxy found to float in a tranquil sea of halo gas (frb)
+- 2020-05-27 Universe's 'missing matter' finally found … (frb)
+- 2021-02-09 Prochaska honored — AAAS Newcomb Cleveland Prize (award)
+- 2021-05-20 FRBs tracked to galaxies' spiral arms (frb)
+- 2022-09-07 With a Simons Pivot Fellowship, turns to oceanography (oceanography)
+- 2023-10-19 Most-distant FRB ever detected (frb)
+- 2024-07-09 CHIME/FRB — Marcel Grossmann Award (award)
+- 2024-09-03 AI to measure ocean heat / fronts for climate (oceanography)
+- 2025-08-21 Brightest FRB ever seen, pinpointed (frb)
+
+Verified the dates against the live articles (e.g. the 2025-08 and 2024-07 pages
+explicitly list Prochaska among the UCSC contributors; the 2021-02 and 2022-09
+pages name him in the headline).
+
+**Verified:** clean `bundle exec jekyll build` (~23 s, no warnings/errors). Home
+page renders the new ucsc.edu / ucolick.org / astro.ucsc.edu links; the ocean-colour
+page shows the SMTS logo; the **News** page (`/year-archive/`) now lists **10 items**
+(9 news + the welcome post) grouped under year headings 2019–2026 in reverse-chron
+order, and an individual post page serves HTTP 200.
+
+Learned / notes:
+- The "News" page is the Liquid year-archive (`_pages/year-archive.html`) that loops
+  over `site.posts`; dropping dated files into `_posts/` is all it takes for them to
+  appear, grouped by year. Permalinks follow `/posts/YYYY/MM/<slug>/`.
+- All nine stories are FRB/cosmology or oceanography — the two threads already
+  highlighted on the site — so the News page now tells a coherent story.
+
+Files modified/created: `_pages/about.md`, `_portfolio/04-ocean-colour.md`, 9 new
+`_posts/*.md` (+ this log). Git is Xavier's to run.
+
+### 2026-06-22 (v2 Task 2 — local-preview reminder + serve.sh script)
+
+**How to view the site locally (reminder).** Two routes, both serving at
+http://localhost:4000/ :
+- **Native (fastest):** `bundle exec jekyll serve` — uses system Ruby 3.2.3 + the
+  gems already vendored under `./vendor/bundle` (`.bundle/config` pins
+  `BUNDLE_PATH: vendor/bundle`). The `bundle`/`jekyll` executables live in the
+  user gem bin (`$(ruby -e 'print Gem.user_dir')/bin`).
+- **Docker (no Ruby needed):** `docker compose up --build` — builds from the
+  repo's `Dockerfile` and serves with `_config.yml,_config_docker.yml`.
+
+**Script:** wrote `serve.sh` at the repo root (chmod +x) wrapping both routes:
+- `./serve.sh` — native, live reload on. cd's to the repo root, puts the user gem
+  bin on PATH, runs `bundle check || bundle install` (fast no-op once vendored),
+  then `bundle exec jekyll serve --livereload`.
+- `./serve.sh --no-watch` — native without the file watcher.
+- `./serve.sh --docker` — `docker compose up --build`.
+- `./serve.sh --help` — usage (printed from the header comment).
+  Emits a clear error with install steps if `bundle` is missing.
+
+**Verified:** syntax-checked (`bash -n`); `--help` renders cleanly; booted
+`./serve.sh --no-watch` and confirmed HTTP 200 for `/`, `/publications/`, and the
+new footer logo `/images/ucsc_log.png`. The build itself is clean.
+
+**Gotcha learned (documented in the script).** The default `--livereload` (and a
+plain `jekyll serve`, which watches by default) needs an inotify watcher. On a box
+where the inotify *instance* limit is already exhausted, Jekyll dies with
+"Failed to initialize inotify ... user limit on the total number of inotify
+instances has been reached" — it builds fine but the watcher can't start. Fix is
+either `./serve.sh --no-watch` or raise the limit permanently:
+`fs.inotify.max_user_instances=1024` via `/etc/sysctl.d/`. Both are spelled out in
+`serve.sh --help`.
+
+Files modified: new `serve.sh` (+ this log). Git is Xavier's to run.
+
+**Follow-up (same day): Xavier ran `./serve.sh` and saw nothing at
+localhost:4000.** Diagnosed: nothing was listening on :4000 and no jekyll process
+was alive — the default `--livereload` run had crashed on the inotify watcher
+exactly as the gotcha predicted (`fs.inotify.max_user_instances` = **128**, already
+exhausted on his machine). Jekyll builds (~30 s) then dies *before* serving, so the
+browser connects to nothing. **Fix:** flipped `serve.sh` so the **watcher is OFF by
+default** (reliable on his box) and live reload is now opt-in via `./serve.sh
+--watch`. Started the server for him with `jekyll serve --no-watch` and confirmed
+HTTP 200. Permanent live-reload fix (raise inotify limit) is still documented in
+`--help`.
+
+### 2026-06-22 (v2 Task 1 — UCSC color scheme, logos, affiliations, Simons Pivot)
+
+Reworked the site's style and content per the six bullet points.
+
+**Color scheme (UC Santa Cruz).** The active theme is `site_theme: "default"`, which
+imports `_sass/theme/_default_light.scss` (+ `_default_dark.scss`). Rather than add a
+new theme, I recolored these to the official UCSC brand palette — **UCSC Blue
+`#003C6C`** (Pantone 295) and **UCSC Gold `#FDC700`** (Pantone 7548):
+- Light theme: `$primary-color`/`$info-color` → UCSC Blue; links → a brighter
+  `#00598C` (AA contrast on white) with UCSC-Blue hover; masthead links → UCSC Blue;
+  visited/masthead-hover → a darkened gold. Verified the compiled `_site/.../main.css`
+  contains `#003C6C`, `#00598C`, `#FDC700`.
+- Dark theme: deep UCSC navy background (`mix(#000, #003C6C, 35%)` → `#002746`) with
+  **gold** links/accents (gold pops on navy where the dark blue would vanish).
+- Added a **3px UCSC-gold accent strip** under the masthead (`_sass/layout/_masthead.scss`
+  `.masthead::after`, was a 1px gray border).
+
+**Logos.** Note: the task referenced `ucsc_slug.png` but the files actually added are
+`images/ucsc_log.png` (250×254, the Slug logo) and
+`images/SeaMeetsStars_logo_transparent_512.png` (512×512). Used the real filenames.
+- **UCSC Slug** → footer on every page, linked to ucsc.edu
+  (`_includes/footer/custom.html`, which renders inside `<footer>` before the
+  copyright line).
+- **Sea Meets the Stars** → right-floated on the home page next to the oceanography
+  paragraph (`_pages/about.md`) and on the Software entry
+  (`_portfolio/05-sea-meets-the-stars.md`).
+
+**"UC Observatory" missing-y.** Could not find this typo — the current source (and
+all 2,570+ built-site occurrences) already read "UC Observatories"/"Observatory"
+correctly; nothing reads "UC Observator". Likely already fixed in v1, or it was on a
+stale live build. No change needed; flagging in case Xavier still sees it live.
+
+**Simons Pivot Fellowship.** Added to the oceanography sentence in `about.md`:
+"This oceanography research has been accelerated by a
+[Simons Pivot Fellowship](https://www.simonsfoundation.org/simons-pivot-fellowship/)."
+(Confirmed the program URL via web search — `.../simons-pivot-fellowship/`.)
+
+**Affiliations.** Added an `## Affiliations` section to the home page listing, with
+links: Professor of Astro & Astrophysics (UCSC), Astronomer (UC Observatories),
+**Affiliate of the Ocean Sciences Department, UCSC** (oceansci.ucsc.edu),
+**Affiliate of Kavli IPMU** (ipmu.jp/en), and **Project Visiting Faculty at NAOJ**
+(nao.ac.jp/en).
+
+**Verified:** clean `bundle exec jekyll build` (~23 s, no warnings/errors). Compiled
+CSS carries the UCSC colors and gold masthead strip; `_site/index.html` contains the
+SMTS logo, the Simons link, the Affiliations heading, all three new affiliation URLs,
+and the footer Slug logo.
+
+Files modified: `_sass/theme/_default_light.scss`, `_sass/theme/_default_dark.scss`,
+`_sass/layout/_masthead.scss`, `_includes/footer/custom.html`, `_pages/about.md`,
+`_portfolio/05-sea-meets-the-stars.md` (+ this log). New images
+(`images/ucsc_log.png`, `images/SeaMeetsStars_logo_transparent_512.png`) were already
+staged by Xavier. Git is Xavier's to run.
 
 ### 2026-06-20 (Task 1 — surveyed the academicpages template)
 

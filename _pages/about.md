@@ -7,13 +7,15 @@ redirect_from:
   - /about.html
 ---
 
-I am a Professor of Astronomy &amp; Astrophysics at the University of California,
-Santa Cruz, and an Astronomer with UC Observatories.
+I am a Professor of [Astronomy &amp; Astrophysics](https://astro.ucsc.edu/) at the
+[University of California, Santa Cruz](https://www.ucsc.edu/) (UCSC), and an
+Astronomer with [UC Observatories](https://www.ucolick.org/) (UCO). I am also an
+Affiliate of the [Ocean Sciences Department](https://oceansci.ucsc.edu/) at UCSC.
 
-My research spans the gas in and around galaxies and across the cosmos: the
-intergalactic and circumgalactic medium, damped Ly&alpha; systems, and the
-chemical enrichment of the Universe over cosmic time. In recent years I have
-worked extensively on **fast radio bursts (FRBs)** as cosmological probes &mdash;
+My research spans the gas in, around and in-between galaxies and across the cosmos: the
+interstellar medium, circumgalatic medium, and intergalactic medium.
+In recent years I have
+worked primarily on **fast radio bursts (FRBs)** as cosmological probes &mdash;
 including the localization of bursts to their host galaxies and the use of their
 dispersion measures to carry out a [census of the Universe's missing
 baryons](/publication/2020Natur581391M).
@@ -21,10 +23,26 @@ baryons](/publication/2020Natur581391M).
 I am also a dedicated builder of open-source scientific software. I founded or
 help lead projects such as [PypeIt](/portfolio/pypeit/) (a Python spectroscopic
 data-reduction pipeline), [linetools](/portfolio/linetools/), and the
-[FRBs](/portfolio/frbs/) software organization. More recently I have been
-applying data-science and machine-learning methods developed for astronomy to
-**oceanography**, through the [ocean-colour](/portfolio/ocean-colour/) and
-[Sea-Meets-the-Stars](/portfolio/sea-meets-the-stars/) efforts.
+[FRBs](/portfolio/frbs/) software organization.
+
+<img src="/images/SeaMeetsStars_logo_transparent_512.png"
+     alt="Sea Meets the Stars logo" align="right" width="150"
+     style="margin: 0 0 1em 1.5em;" />
+
+More recently I have been applying data-science and machine-learning methods
+developed for astronomy to **oceanography**, through the
+[ocean-colour](/portfolio/ocean-colour/) and
+[Sea-Meets-the-Stars](/portfolio/sea-meets-the-stars/) efforts. This
+oceanography research has been accelerated by a
+[Simons Pivot Fellowship](https://www.simonsfoundation.org/simons-pivot-fellowship/).
+
+## Affiliations
+
+- Professor of Astronomy &amp; Astrophysics, [UC Santa Cruz](https://astro.ucsc.edu/)
+- Astronomer, [UC Observatories](https://www.ucolick.org/)
+- Affiliate, [Ocean Sciences Department, UC Santa Cruz](https://oceansci.ucsc.edu/)
+- Affiliate, [Kavli IPMU](https://www.ipmu.jp/en) (Kavli Institute for the Physics and Mathematics of the Universe)
+- Project Visiting Faculty, [NAOJ](https://www.nao.ac.jp/en/) (National Astronomical Observatory of Japan)
 
 Use the menu above to browse my [publications](/publications/), my
 [software](/portfolio/), news, and [contact information](/contact/). A full,
