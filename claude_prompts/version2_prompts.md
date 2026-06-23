@@ -28,6 +28,8 @@ Consider using the Claude skills in `~/bin/.claude/skills/`.
 2. Read this file. Execute the 2nd task under "Tasks".
 3. Read this file. Execute the 3rd task under "Tasks".
 4. Read this file. Execute the 3rd task again under "Tasks".  You didn't complete it
+5. Read this file. Execute the 4th task under "Tasks".
+6. Read this file. Execute the 5th task under "Tasks".
 
 ## Tasks
 
@@ -50,6 +52,9 @@ Consider using the Claude skills in `~/bin/.claude/skills/`.
     - Add the Sea Meets the Stars logo to the ocean-colour page.
     - Search the UCSC news archives to include News stories and press releases that include me.  Add these to the News pages.
 
+4. Give me the PR commands to create a PR from `v2` to `master`.  When I do it on GitHub it is always directed to where I forked from and rejected.
+
+5. Please execute the PR for me.
 
 ## Logging
 
